@@ -1,0 +1,102 @@
+{
+  "schema": 1,
+  "id": "grainfield",
+  "name": "Grainfield",
+  "parameters": [
+    {
+      "id": "time",
+      "label": "Time",
+      "default": 0.25,
+      "mapping": {
+        "kind": "linear",
+        "minimum": 0,
+        "maximum": 1
+      },
+      "display": "percent"
+    },
+    {
+      "id": "density",
+      "label": "Density",
+      "default": 0.35,
+      "mapping": {
+        "kind": "linear",
+        "minimum": 0,
+        "maximum": 1
+      },
+      "display": "percent"
+    },
+    {
+      "id": "dry",
+      "label": "Dry",
+      "default": 0.5,
+      "mapping": {
+        "kind": "linear",
+        "minimum": 0,
+        "maximum": 1
+      },
+      "display": "percent"
+    },
+    {
+      "id": "size",
+      "label": "Size",
+      "default": 0.5,
+      "mapping": {
+        "kind": "linear",
+        "minimum": 0,
+        "maximum": 1
+      },
+      "display": "percent"
+    },
+    {
+      "id": "shape",
+      "label": "Shape",
+      "default": 0.65,
+      "mapping": {
+        "kind": "linear",
+        "minimum": 0,
+        "maximum": 1
+      },
+      "display": "percent"
+    },
+    {
+      "id": "freeze",
+      "label": "Freeze",
+      "default": 0,
+      "mapping": {
+        "kind": "enum",
+        "labels": [
+          "Off",
+          "On"
+        ]
+      },
+      "display": "enum"
+    },
+    {
+      "id": "feedback",
+      "label": "Feedback",
+      "default": 0,
+      "mapping": {
+        "kind": "linear",
+        "minimum": 0,
+        "maximum": 1
+      },
+      "display": "percent"
+    },
+    {
+      "id": "reverb",
+      "label": "Reverb",
+      "default": 0,
+      "mapping": {
+        "kind": "linear",
+        "minimum": 0,
+        "maximum": 1
+      },
+      "display": "percent"
+    }
+  ],
+  "presets": {},
+  "resources": {
+    "bufferBytes": 262144,
+    "transport": 1
+  }
+}
