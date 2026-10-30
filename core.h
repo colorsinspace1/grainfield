@@ -33,6 +33,7 @@ struct State {
     // SHIMMER's octave-up shifter on the reverb tail
     opxy::u32 shimmer_on, shimmer_write, shimmer_delay;
     opxy::i32 shimmer_lp, shimmer_in;
+    opxy::i32 wet_gain;  // the grains' level, eased: DRY up turns them down (Q31)
 };
 
 void initialize(State& state);

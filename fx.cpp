@@ -238,6 +238,7 @@ void initialize(State& state)
     state.freeze_seen = 0;
     state.freeze_last = 0;
     state.freeze_armed = 0;
+    state.wet_gain = 0x7fffffff;
     state.scan_phase = 0;
     state.shimmer_on = 0;
     state.shimmer_write = 0;
@@ -315,9 +316,13 @@ void process(State& state,
     const i32 freeze =
         nonnegative(parameters[5]);
 
+    // DRY is a wet/dry mix: as it brings the source up, the grains (frozen or
+    // not, with their reverb) come down, so at full DRY only the source is heard.
+    const i32 wet_target = 0x7fffffff - nonnegative(parameters[2]);
+
     // A restored Freeze (saved project, power-up) stays inactive until it is
     // switched in this session: only a change from Off to On freezes.
-    const u32 freeze_on = freeze >= 0x40000000 ? 1u : 0u;
+    const u32 freeze_on = freeze >= 0x01000000 ? 1u : 0u;  // 0 off; the first notch up freezes
     if (!state.freeze_seen) {
         state.freeze_seen = 1;
         state.freeze_last = freeze_on;
@@ -626,8 +631,9 @@ void process(State& state,
                     sat_add(lifted_right, lifted_right));
         }
 
-        left[i] = out_left;
-        right[i] = out_right;
+        state.wet_gain += (wet_target >> 10) - (state.wet_gain >> 10);  // eased, no clicks
+        left[i] = multiply(out_left, state.wet_gain);
+        right[i] = multiply(out_right, state.wet_gain);
 
         if (!frozen) {
             if (++state.write >= buffer.count)

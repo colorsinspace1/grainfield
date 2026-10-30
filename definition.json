@@ -63,13 +63,11 @@
       "label": "Freeze",
       "default": 0,
       "mapping": {
-        "kind": "enum",
-        "labels": [
-          "Off",
-          "On"
-        ]
+        "kind": "linear",
+        "minimum": 0,
+        "maximum": 1
       },
-      "display": "enum"
+      "display": "percent"
     },
     {
       "id": "feedback",
